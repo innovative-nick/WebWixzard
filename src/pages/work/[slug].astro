@@ -1,0 +1,67 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Cover from '../../components/Cover.astro';
+import settings from '../../data/settings.json';
+import { getProjects } from '../../lib/projects';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: { entry, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+const { entry, next } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const hasBody = Boolean(entry.body && entry.body.trim());
+const facts = [
+  ['Client', data.client],
+  ['Industry', data.industry],
+  ['Platform', data.platform],
+  ['Year', data.year],
+].filter(([, v]) => v);
+---
+<Base title={data.title} description={data.summary || `${data.title}, a website by WebWixzard.`} image={data.cover || undefined}>
+  <section class="page-hero">
+    <div class="wrap">
+      <a class="crumb" href="/work">← All work</a>
+      <h1>{data.title}</h1>
+      {data.summary && <p>{data.summary}</p>}
+      {facts.length > 0 && (
+        <div class="project-facts">
+          {facts.map(([k, v]) => <div><small>{k}</small><span>{v}</span></div>)}
+          {data.services.length > 0 && <div><small>Services</small><span>{data.services.join(', ')}</span></div>}
+        </div>
+      )}
+      {data.liveUrl && (
+        <div class="btn-row" style="margin-top:12px"><a class="btn btn-primary" href={data.liveUrl} target="_blank" rel="noopener">View the live website <span class="arrow">↗</span></a></div>
+      )}
+    </div>
+  </section>
+  <section class="band paper" style="padding-top:48px">
+    <div class="wrap">
+      <div class="project-cover">
+        <Cover src={data.cover} title={data.title} platform={data.platform} eager />
+      </div>
+      {hasBody && <article class="prose"><Content /></article>}
+      {next && next.id !== entry.id && (
+        <div class="next-project">
+          <span class="muted">Next project</span>
+          <a class="btn btn-ghost" href={`/work/${next.id}/`}>{next.data.title} <span class="arrow">→</span></a>
+        </div>
+      )}
+    </div>
+  </section>
+  <section class="cta-band">
+    <div class="wrap">
+      <div>
+        <h2>Want a site like <em>this?</em></h2>
+        <p>Book a free call and we'll scope your project together.</p>
+      </div>
+      <a class="btn" href={settings.calendlyUrl} target="_blank" rel="noopener">Book a free consultation <span class="arrow">→</span></a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cover from '../../components/Cover.astro';
+import settings from '../../data/settings.json';
+import { getProjects } from '../../lib/projects';
+const projects = await getProjects();
+---
+<Base title="Work" description="Websites designed and built by WebWixzard for businesses across a range of industries.">
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Portfolio</span>
+      <h1>Selected <em>work</em></h1>
+      <p>Websites we've designed and built. Open a project for the details and a link to the live site.</p>
+    </div>
+  </section>
+  <section class="band paper">
+    <div class="wrap">
+      {projects.length > 0 ? (
+        <div class="work-grid">
+          {projects.map((p) => (
+            <a class="work-card" href={`/work/${p.id}/`}>
+              <Cover src={p.data.cover} title={p.data.title} platform={p.data.platform} />
+              <div class="work-meta">
+                <h3>{p.data.title}</h3>
+                {p.data.platform && <span class="platform">{p.data.platform}</span>}
+              </div>
+              {p.data.summary && <p>{p.data.summary}</p>}
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="empty-work">New projects are on the way.</p>
+      )}
+    </div>
+  </section>
+  <section class="cta-band">
+    <div class="wrap">
+      <div>
+        <h2>Your business could be <em>next.</em></h2>
+        <p>Book a free call and we'll scope your project together.</p>
+      </div>
+      <a class="btn" href={settings.calendlyUrl} target="_blank" rel="noopener">Book a free consultation <span class="arrow">→</span></a>
+    </div>
+  </section>
+</Base>

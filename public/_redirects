@@ -1,0 +1,4 @@
+# Old GoHighLevel URLs -> new pages (Cloudflare Pages redirects)
+/home                   /            301
+/get-started-321478     /#contact    301
+/portfolio              /work        301

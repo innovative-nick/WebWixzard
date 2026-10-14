@@ -1,0 +1,242 @@
+---
+import Base from '../layouts/Base.astro';
+import Cover from '../components/Cover.astro';
+import settings from '../data/settings.json';
+import pricing from '../data/pricing.json';
+import testimonials from '../data/testimonials.json';
+import faqs from '../data/faqs.json';
+import { getProjects } from '../lib/projects';
+
+const projects = await getProjects();
+const featured = projects.filter((p) => p.data.featured);
+const showcase = (featured.length ? featured : projects).slice(0, 4);
+const heroPair = showcase.slice(0, 2);
+
+const check = 'M5 12.5l4.2 4.2L19 7';
+---
+<Base>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Web design &amp; development studio</span>
+        <h1>We build websites that make businesses look <em>exactly as good</em> as they are.</h1>
+        <p class="lede">Your website is the first thing potential clients see. It should build trust, show what your business is worth, and turn visitors into leads from day one.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={settings.calendlyUrl} target="_blank" rel="noopener">Book a free consultation <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="#pricing">Start my project</a>
+        </div>
+        <ul class="facts">
+          <li>Built in 7 to 21 days</li>
+          <li>Fixed, one-time pricing</li>
+          <li>Support after launch</li>
+        </ul>
+      </div>
+      {heroPair.length > 0 && (
+        <div class="hero-stack" aria-hidden="true">
+          {heroPair.map((p, i) => (
+            <Cover src={p.data.cover} title={p.data.title} platform={p.data.platform} eager={i === 0} />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="band" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What we do</span>
+        <h2>Focused on what <em>actually moves</em> the needle</h2>
+        <p class="muted">Two things done properly: websites that win trust, and AI tools that save you time. We also build for agencies under their brand.</p>
+      </div>
+      <div class="services">
+        <article class="service feature">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="9" width="38" height="28" rx="3"/><path d="M5 16h38M10 12.5h.01M14 12.5h.01M18 12.5h.01M12 23h14M12 28h9"/><rect x="30" y="21" width="8" height="10" rx="1"/><path d="M18 42h12M24 37v5"/></svg>
+          <h3>Website design &amp; redesign</h3>
+          <p class="muted">Strategy, design, copy, development and launch. A site that explains what you do in seconds and makes it easy to get in touch.</p>
+          <ul>
+            <li>Custom design, no templates</li>
+            <li>Conversion-focused copy and layout</li>
+            <li>SEO foundations and fast load times</li>
+          </ul>
+        </article>
+        <article class="service">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="8" y="12" width="32" height="24" rx="8"/><path d="M24 12V6M20 6h8"/><circle cx="18" cy="24" r="2.5"/><circle cx="30" cy="24" r="2.5"/><path d="M19 30.5c3 2 7 2 10 0M4 22v6M44 22v6"/></svg>
+          <h3>AI integration</h3>
+          <p class="muted">Chatbots, voice agents and workflow automation that answer enquiries and qualify leads while you work.</p>
+          <ul>
+            <li>Website and WhatsApp chatbots</li>
+            <li>AI voice agents for calls</li>
+            <li>Automated follow-ups and workflows</li>
+          </ul>
+        </article>
+        <article class="service">
+          <span class="tag">For agencies</span>
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="6" y="10" width="22" height="16" rx="2"/><rect x="20" y="22" width="22" height="16" rx="2"/><path d="M11 15h8M25 27h8M25 32h12"/></svg>
+          <h3>White-label builds</h3>
+          <p class="muted">Overflow design and development for web, marketing and SEO agencies, delivered under your brand.</p>
+          <ul>
+            <li>WordPress, Webflow, GoHighLevel, Wix Studio, Shopify or custom code</li>
+            <li>Your brand, your client relationship</li>
+            <li>Agreed timelines and clean handovers</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="band dark" id="process">
+    <div class="wrap">
+      <div class="section-head split">
+        <div style="display:grid;gap:18px">
+          <span class="eyebrow">How we work</span>
+          <h2>A process built for <em>clarity &amp; speed</em></h2>
+        </div>
+        <p class="muted">No jargon and no guesswork. You always know what's happening, what's next, and when it will be done.</p>
+      </div>
+      <ol class="steps" style="padding:0;margin:0;list-style:none">
+        <li class="step">
+          <span class="step-num">01</span>
+          <h3>Discover</h3>
+          <p class="muted">A quick call to understand your goals, your customers and what's not working, in plain language.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">02</span>
+          <h3>Design &amp; build</h3>
+          <p class="muted">We design a custom, high-converting site with clear messaging, then build it once you're happy with the direction.</p>
+        </li>
+        <li class="step">
+          <span class="step-num">03</span>
+          <h3>Launch &amp; grow</h3>
+          <p class="muted">We launch, hand over with a walkthrough video, and stay on hand with support and tools to keep it growing.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section class="band paper" id="work">
+    <div class="wrap">
+      <div class="section-head split">
+        <div style="display:grid;gap:18px">
+          <span class="eyebrow">Portfolio</span>
+          <h2>A glimpse of the websites we've <em>designed and built</em></h2>
+        </div>
+        <p class="muted">Real projects for real businesses. Open any of them to see the live site.</p>
+      </div>
+      {showcase.length > 0 ? (
+        <div class="work-grid">
+          {showcase.map((p, i) => (
+            <a class="work-card" href={`/work/${p.id}/`}>
+              <Cover src={p.data.cover} title={p.data.title} platform={p.data.platform} />
+              <div class="work-meta">
+                <h3>{p.data.title}</h3>
+                {p.data.platform && <span class="platform">{p.data.platform}</span>}
+              </div>
+              {p.data.summary && <p>{p.data.summary}</p>}
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="empty-work">New projects are on the way.</p>
+      )}
+      <div class="work-foot"><a class="btn btn-ghost" href="/work">View all work <span class="arrow">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="cta-band">
+    <div class="wrap">
+      <div>
+        <h2>They searched. They found you. <em>They left.</em></h2>
+        <p>Start your project before it happens again.</p>
+      </div>
+      <a class="btn" href={settings.calendlyUrl} target="_blank" rel="noopener">Book a free consultation <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="band" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Transparent pricing. <em>No surprises.</em></h2>
+        <p class="muted">One-time prices in US dollars. A 50% deposit starts your project.</p>
+      </div>
+      <div class="plans">
+        {pricing.map((plan) => (
+          <article class={`plan${plan.popular ? ' popular' : ''}`}>
+            {plan.popular && <span class="badge">Most popular</span>}
+            <h3>{plan.name}</h3>
+            <div class="price"><b>{plan.price}</b><span>{plan.note}</span></div>
+            {plan.summary && <p class="muted">{plan.summary}</p>}
+            <ul>
+              {plan.features.map((f) => (
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={check} /></svg>{f}</li>
+              ))}
+            </ul>
+            <a class={`btn ${plan.popular ? 'btn-primary' : 'btn-ghost'}`} href={settings.calendlyUrl} target="_blank" rel="noopener">Get started</a>
+          </article>
+        ))}
+      </div>
+      <p class="plans-note">Not sure which plan fits, or need something more specific? <a class="textlink" href={settings.calendlyUrl} target="_blank" rel="noopener">Book a free call</a> and we'll scope it out together.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="band dark" id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Testimonials</span>
+        <h2>What our clients <em>actually say</em></h2>
+      </div>
+      <div class="quotes">
+        {testimonials.map((t) => (
+          <figure class="quote">
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <blockquote>“{t.quote}”</blockquote>
+            <figcaption><b>{t.name}</b><span>{[t.role, t.company].filter(Boolean).join(', ')}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band" id="faq">
+    <div class="wrap faq-grid">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions we <em>hear often</em></h2>
+        <p class="muted">Something else on your mind? <a class="textlink" href="#contact">Get in touch</a>.</p>
+      </div>
+      <div class="faq">
+        {faqs.map((f, i) => (
+          <details open={i === 0}>
+            <summary>{f.question}<span class="plus" aria-hidden="true">+</span></summary>
+            <p>{f.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="band dark" id="contact">
+    <div class="wrap contact">
+      <div class="contact-copy">
+        <span class="eyebrow">Contact us</span>
+        <h2>Claim your <em>free consultation</em></h2>
+        <p class="muted" style="font-size:19px;max-width:48ch">Tell us about your business and what you need, and we'll scope it out together, honestly. {settings.responseTime}</p>
+        <div class="btn-row"><a class="btn btn-primary" href={settings.calendlyUrl} target="_blank" rel="noopener">Book your free call <span class="arrow">→</span></a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-row"><small>Book a call</small><a href={settings.calendlyUrl} target="_blank" rel="noopener">30-minute consultation</a></div>
+        {settings.email && <div class="contact-row"><small>Email</small><a href={`mailto:${settings.email}`}>{settings.email}</a></div>}
+        {settings.phone && <div class="contact-row"><small>Phone</small><a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a></div>}
+      </div>
+    </div>
+  </section>
+</Base>

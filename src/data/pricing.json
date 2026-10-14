@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Business Essentials",
+    "price": "$500",
+    "note": "One-time",
+    "summary": "A clean, credible site for businesses that need to get online properly.",
+    "popular": false,
+    "features": [
+      "Up to 3 pages",
+      "Mobile responsive",
+      "Simple AI chatbot",
+      "Basic SEO setup",
+      "2 rounds of revisions",
+      "30 days of support"
+    ]
+  },
+  {
+    "name": "Growth Catalyst",
+    "price": "$1,200",
+    "note": "One-time",
+    "summary": "Built to turn visitors into enquiries, with the SEO groundwork done right.",
+    "popular": true,
+    "features": [
+      "Up to 5 pages",
+      "Conversion-focused layout",
+      "AI chatbot",
+      "Full SEO foundation",
+      "3 rounds of revisions",
+      "60 days of support"
+    ]
+  },
+  {
+    "name": "Brand Authority",
+    "price": "$2,000",
+    "note": "One-time",
+    "summary": "A premium, custom site for businesses competing on reputation.",
+    "popular": false,
+    "features": [
+      "Up to 7 pages",
+      "Premium custom design",
+      "Advanced AI chatbot",
+      "Advanced lead capture",
+      "5 rounds of revisions",
+      "90 days of support"
+    ]
+  }
+]
