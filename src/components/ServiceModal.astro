@@ -12,6 +12,6 @@ const { id, icon, title, text, items, bullet = 'round', cta } = Astro.props;
     <p>{text}</p>
     <h3>What's covered:</h3>
     <ul class={`covered ${bullet}`}>{items.map((i) => <li>{i}</li>)}</ul>
-    <a class="btn btn-orange modal-btn" href={cta} target="_blank" rel="noopener">Book a Free Consultation</a>
+    <a class="btn btn-orange modal-btn" href={cta}>Start My Project</a>
   </div>
 </dialog>
