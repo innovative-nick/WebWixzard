@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
         <li><a href="/#home">Home</a></li>
         <li><a href="/#services">About Us</a></li>
         <li><a href="/#services">Services</a></li>
-        <li><a href={settings.calendlyUrl} target="_blank" rel="noopener">Start your Project</a></li>
+        <li><a href="/get-started">Start your Project</a></li>
         <li><a href={settings.calendlyUrl} target="_blank" rel="noopener">Book a Free Consultation</a></li>
       </ul>
     </div>
@@ -23,5 +23,5 @@ const year = new Date().getFullYear();
       <dd><a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a></dd>
     </dl>
   </div>
-  <p class="copy">Copyrights {year} | Webwixzard™ | Terms &amp; Conditions</p>
+  <p class="copy">Copyrights {year} | Webwixzard™ | <a href="/terms">Terms &amp; Conditions</a></p>
 </footer>

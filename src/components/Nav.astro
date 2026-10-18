@@ -1,0 +1,32 @@
+---
+import Icon from './Icons.astro';
+---
+<nav class="nav" aria-label="Main">
+  <a class="nav-logo" href="/" aria-label="Web Wixzard home"><img src="/images/logo.png" alt="Web Wixzard" width="58" height="42" /></a>
+  <div class="nav-links">
+    <a href="/#home">Home</a>
+    <a href="/#services">About Us</a>
+    <a href="/#portfolio">Portfolio</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <a class="btn btn-dark" href="/#contact">Contact Us</a>
+  <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><Icon name="menu" /></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#home">Home</a>
+  <a href="/#services">About Us</a>
+  <a href="/#portfolio">Portfolio</a>
+  <a href="/#contact">Contact</a>
+  <a class="btn btn-dark" href="/#contact">Contact Us</a>
+</div>
+<script is:inline>
+  (function () {
+    var btn = document.querySelector('.menu-btn'), menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }); });
+  })();
+</script>

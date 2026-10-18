@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icons.astro';
+import Nav from '../components/Nav.astro';
+import ServiceModal from '../components/ServiceModal.astro';
 import settings from '../data/settings.json';
 import pricing from '../data/pricing.json';
 import testimonials from '../data/testimonials.json';
@@ -16,31 +18,14 @@ const strip = [...logos, ...logos];
 <Base>
   <!-- Hero -->
   <header class="hero" id="home">
-    <nav class="nav" aria-label="Main">
-      <a class="nav-logo" href="/" aria-label="Web Wixzard home"><img src="/images/logo.png" alt="Web Wixzard" width="58" height="42" /></a>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">About Us</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <a class="btn btn-dark" href={cal} target="_blank" rel="noopener">Get Started</a>
-      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><Icon name="menu" /></button>
-    </nav>
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="#home">Home</a>
-      <a href="#services">About Us</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-      <a class="btn btn-dark" href={cal} target="_blank" rel="noopener">Get Started</a>
-    </div>
+    <Nav />
     <div class="hero-body">
       <div class="hero-copy">
         <h1 data-reveal>We build websites that <br class="br" />make businesses look <br class="br" /><span class="accent">exactly as good</span> as they are.</h1>
         <p class="hero-sub" data-reveal style="--d:.12s">Your website is the first thing potential clients see. We make sure it builds trust, communicates your value, and turns visitors into leads, starting from day one.</p>
         <div class="hero-btns" data-reveal style="--d:.24s">
           <a class="btn btn-orange" href={cal} target="_blank" rel="noopener">Book a Free Consultation</a>
-          <a class="btn btn-outline" href={cal} target="_blank" rel="noopener">Start My Project <Icon name="arrow-circle" /></a>
+          <a class="btn btn-outline" href="/get-started">Get Started <Icon name="arrow-circle" /></a>
         </div>
       </div>
     </div>
@@ -68,17 +53,36 @@ const strip = [...logos, ...logos];
           <img src="/images/icon-web.jpg" alt="" loading="lazy" />
           <h3>Website Design &amp; Redesign</h3>
           <p>From new builds to full redesigns — we handle everything website. Strategy, design, copy, development, and launch. You get a site that looks great, loads fast, and turns visitors into paying clients.</p>
-          <a class="learn" href="#contact">Learn More <Icon name="arrow-circle" /></a>
+          <button class="learn" type="button" data-modal="modal-web">Learn More <Icon name="arrow-circle" /></button>
         </article>
         <article class="card" data-reveal style="--d:.12s">
           <img src="/images/icon-ai.jpg" alt="" loading="lazy" />
           <h3>AI Integration</h3>
           <p>We plug intelligent automation into your business so it runs smarter around the clock. Chatbots that convert, voice agents that respond, and workflows that handle the repetitive — so you don't have to.</p>
-          <a class="learn" href="#contact">Learn More <Icon name="arrow-circle" /></a>
+          <button class="learn" type="button" data-modal="modal-ai">Learn More <Icon name="arrow-circle" /></button>
         </article>
       </div>
     </div>
   </section>
+
+  <ServiceModal
+    id="modal-web"
+    icon="/images/icon-web.jpg"
+    title="Web Design"
+    text="From new builds to full redesigns, we handle everything website. Strategy, design, copy, development, and launch. You get a site that looks great, loads fast, and turns visitors into paying clients."
+    items={['New website design & development', 'Website redesigns & refreshes', 'Landing pages & sales pages', 'Copywriting & content setup', 'SEO foundation & speed optimization', 'Mobile-first, fully responsive']}
+    bullet="round"
+    cta={cal}
+  />
+  <ServiceModal
+    id="modal-ai"
+    icon="/images/icon-ai.jpg"
+    title="AI Integration"
+    text="We plug intelligent automation into your business so it runs smarter around the clock. Chatbots that convert, voice agents that respond, and workflows that handle the repetitive — so you don't have to."
+    items={['AI chatbots for websites & WhatsApp', 'Voice agents & phone automation', 'Lead capture & qualification bots', 'Business workflow automation', 'CRM & booking integrations', 'Custom AI tools for your workflow']}
+    bullet="square"
+    cta={cal}
+  />
 
   <!-- How we work -->
   <section class="process" id="process">
@@ -134,7 +138,7 @@ const strip = [...logos, ...logos];
         <h2>They searched. They found you. They left.</h2>
         <p>Start your project before it happens again.</p>
       </div>
-      <a class="btn btn-orange" href={cal} target="_blank" rel="noopener">Start my Project</a>
+      <a class="btn btn-orange" href={cal} target="_blank" rel="noopener">Book a Free Consultation</a>
     </div>
   </section>
   <hr class="rule" />
@@ -142,7 +146,7 @@ const strip = [...logos, ...logos];
   <!-- Pricing -->
   <section class="pricing" id="pricing">
     <div class="wrap center-head" data-reveal>
-      <span class="eyebrow">How we work</span>
+      <span class="eyebrow">Pricing</span>
       <h2>Transparent pricing. <em>No surprises.</em></h2>
       <p>Every project is different — but you deserve to know what to expect. Pick the package that fits where your business is right now.</p>
     </div>
@@ -155,7 +159,7 @@ const strip = [...logos, ...logos];
           <div class="price"><sup>$</sup>{plan.price}</div>
           <p class="price-note">{plan.note}</p>
           <ul class="feats">{plan.features.map((f) => <li>{f}</li>)}</ul>
-          <a class="btn btn-plan" href={cal} target="_blank" rel="noopener">Get Started</a>
+          <a class="btn btn-plan" href="/get-started">Get Started</a>
         </article>
       ))}
     </div>
@@ -242,16 +246,6 @@ const strip = [...logos, ...logos];
 </Base>
 
 <script is:inline>
-  // Mobile menu
-  (function () {
-    var btn = document.querySelector('.menu-btn'), menu = document.getElementById('mobile-menu');
-    if (!btn || !menu) return;
-    btn.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }); });
-  })();
   // Testimonial "Read more": only show when the quote is cut off.
   document.querySelectorAll('.quote').forEach(function (q) {
     var text = q.querySelector('blockquote'), b = q.querySelector('.read-more');

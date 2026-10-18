@@ -43,6 +43,12 @@ The original images were copied from the old GoHighLevel site into `public/image
 by the **Copy images from old site** GitHub Action (`scripts/fetch-images.mjs`). Swap any of them by
 uploading a file with the same name.
 
+## Form notifications (Get Started form)
+The project form at `/get-started` sends each submission to your email through Web3Forms (free, 250 a month).
+1. Go to https://web3forms.com, enter `nicho@webwixzard.com` and create an access key. It arrives by email.
+2. Pages CMS → **Contact & social links** → paste it into **Web3Forms access key** → Save.
+Until a key is added, the form asks visitors to email you instead.
+
 ## Run it on your computer (optional)
 ```
 npm install
@@ -53,7 +59,7 @@ Open http://localhost:4321.
 ## Where things live
 - `src/content/projects/` portfolio projects (one Markdown file each)
 - `src/data/` client logos, testimonials, pricing, FAQs, contact and social links (JSON)
-- `src/pages/` homepage and 404
+- `src/pages/` homepage, get-started form, terms and 404
 - `src/styles/global.css` all styling and brand colours
 - `public/_redirects` sends old GoHighLevel URLs to the new pages
 - `.pages.yml` CMS configuration

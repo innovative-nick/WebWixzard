@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import settings from '../data/settings.json';
+const updated = '18 October 2026';
+---
+<Base title="Terms & Conditions" description="The terms that apply when you work with Web Wixzard on a website or AI integration project.">
+  <header class="sub-hero" id="home">
+    <Nav />
+    <div class="intro">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms &amp; Conditions</h1>
+    </div>
+  </header>
+
+  <section class="page">
+    <article class="legal">
+      <p class="updated">Last updated: {updated}</p>
+      <p style="margin-top:16px">These terms apply when you hire Web Wixzard ("we", "us") to design, build or redesign a website, or to set up AI tools such as chatbots, voice agents and automations ("the services"). By paying a deposit or approving a proposal, you agree to them.</p>
+
+      <h2>1. Packages and quotes</h2>
+      <p>Our packages (Business Essentials, Growth Catalyst and Brand Authority) and any custom quote set out the pages, features, revision rounds and support period included. Work outside that scope is quoted separately and only starts once you approve it.</p>
+
+      <h2>2. Payment</h2>
+      <ul>
+        <li>A 50% deposit is due before work begins. The remaining 50% is due before the website goes live or is handed over.</li>
+        <li>Prices are one-time fees in US dollars unless your quote says otherwise.</li>
+        <li>Third-party costs such as domains, hosting, premium plugins, AI platform usage or paid software are not included unless your quote says so, and are paid by you.</li>
+      </ul>
+
+      <h2>3. Timelines</h2>
+      <p>Build times (7, 14 or 21 days depending on the package) start once we have received everything we need from you: a completed brief, brand assets, content and the deposit. Delays in sending materials, feedback or approvals extend the timeline.</p>
+
+      <h2>4. Your responsibilities</h2>
+      <ul>
+        <li>Provide accurate information, content and brand assets on time.</li>
+        <li>Make sure you own or have permission to use everything you send us, including logos, images and text.</li>
+        <li>Review and give feedback within a reasonable time, normally within 5 working days.</li>
+      </ul>
+
+      <h2>5. Revisions and approval</h2>
+      <p>Each package includes a set number of revision rounds. We share a design direction before building. Further revisions beyond your package, or changes after final approval, may be charged.</p>
+
+      <h2>6. Ownership</h2>
+      <p>Once the project is paid in full, you own the final website design and content created for you. Third-party tools, themes, plugins and platforms remain subject to their own licences. We may show the finished work in our portfolio and on social media unless you ask us not to in writing.</p>
+
+      <h2>7. Support after launch</h2>
+      <p>Your package includes a support period (30, 60 or 90 days) for fixing issues with the work we delivered. New features, content changes and ongoing maintenance after that period are available on request.</p>
+
+      <h2>8. Cancellations and refunds</h2>
+      <p>You can cancel at any time by contacting us in writing. The deposit covers work already started and is non-refundable once work begins. If you cancel later in the project, you pay for the work completed up to that point.</p>
+
+      <h2>9. AI tools</h2>
+      <p>Chatbots, voice agents and automations rely on third-party AI services. We set them up carefully, but their answers can be inaccurate, and their availability and pricing are controlled by those providers. You are responsible for reviewing how they respond to your customers.</p>
+
+      <h2>10. Liability</h2>
+      <p>We take care to deliver reliable work, but we cannot guarantee specific results such as rankings, leads or sales. Our total liability for any claim relating to a project is limited to the amount you paid us for that project. We are not liable for losses caused by third-party services, hosting providers or changes made by others after handover.</p>
+
+      <h2>11. Privacy</h2>
+      <p>We only use the details you send us, including through our website forms, to respond to you and deliver your project. We do not sell your information.</p>
+
+      <h2>12. Changes to these terms</h2>
+      <p>We may update these terms from time to time. The version on this page at the time you pay your deposit applies to your project.</p>
+
+      <h2>13. Governing law</h2>
+      <p>These terms are governed by the laws of the Federal Republic of Nigeria.</p>
+
+      <h2>14. Contact</h2>
+      <p>Questions about these terms? Email <a href={`mailto:${settings.email}`}>{settings.email}</a> or call <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>.</p>
+    </article>
+  </section>
+</Base>

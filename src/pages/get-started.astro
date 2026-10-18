@@ -1,0 +1,169 @@
+---
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import settings from '../data/settings.json';
+
+const countries = [
+  ['🇳🇬', 'Nigeria', '+234'], ['🇺🇸', 'United States', '+1'], ['🇬🇧', 'United Kingdom', '+44'], ['🇨🇦', 'Canada', '+1'],
+  ['🇦🇪', 'United Arab Emirates', '+971'], ['🇬🇭', 'Ghana', '+233'], ['🇿🇦', 'South Africa', '+27'], ['🇰🇪', 'Kenya', '+254'],
+  ['🇮🇪', 'Ireland', '+353'], ['🇩🇪', 'Germany', '+49'], ['🇫🇷', 'France', '+33'], ['🇳🇱', 'Netherlands', '+31'],
+  ['🇮🇳', 'India', '+91'], ['🇦🇺', 'Australia', '+61'], ['🇸🇦', 'Saudi Arabia', '+966'], ['🇶🇦', 'Qatar', '+974'],
+];
+const goals = ['Get more leads', 'Increase sales', 'Build brand credibility', 'Launch a new business', 'Redesign existing website', 'Other'];
+const budgets = ['Under $500', '$500 – $1,200', '$1,200 – $2,000', '$2,000 – $5,000', '$5,000+', 'Not sure yet'];
+---
+<Base title="Start Your Project" description="Tell us about your project and we'll put together the perfect plan for you.">
+  <header class="sub-hero" id="home">
+    <Nav />
+    <div class="intro">
+      <span class="eyebrow">Get started</span>
+      <h1>Let's build something <span class="accent">exactly as good</span> as your business.</h1>
+    </div>
+  </header>
+
+  <section class="page">
+    <div class="wrap">
+      <div class="form-card" id="form-card">
+        <h2>Your Project Starts Here.</h2>
+        <p class="form-intro">Give us the details and we'll put together the perfect plan for you.</p>
+
+        <form class="form" id="project-form" novalidate>
+          <input type="hidden" name="access_key" value={settings.web3formsKey} />
+          <input type="hidden" name="from_name" value="Web Wixzard website" />
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="row2">
+            <div class="field">
+              <label for="f-name">What’s your name? <span class="req">*</span></label>
+              <input class="input" id="f-name" name="fullname" placeholder="Your Name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="f-business">Business Name</label>
+              <input class="input" id="f-business" name="business" placeholder="What’s your business or brand name?" autocomplete="organization" />
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="f-email">Email <span class="req">*</span></label>
+              <div class="with-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>
+                <input class="input" id="f-email" name="email" type="email" placeholder="What’s the best email to reach you?" required autocomplete="email" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone/Whatsapp <span class="req">*</span></label>
+              <div class="phone">
+                <select class="select" id="f-code" name="country_code" aria-label="Country code">
+                  {countries.map(([flag, name, code]) => <option value={code} title={name}>{flag} {code}</option>)}
+                </select>
+                <input class="input" id="f-phone" name="phone" type="tel" placeholder="801 234 5678" required autocomplete="tel-national" />
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="field">
+            <legend>Type of service needed <span class="req">*</span></legend>
+            <div class="opts">
+              {['Website Design', 'AI Integration', 'Both'].map((v, i) => (
+                <label class="opt"><input type="radio" name="service" value={v} required={i === 0} /> {v}</label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="f-site">Do you already have a website? (If yes, paste the link)</label>
+            <input class="input" id="f-site" name="current_website" type="url" placeholder="https://yourwebsite.com" />
+          </div>
+
+          <fieldset class="field">
+            <legend>What’s the main goal of this project?</legend>
+            <div class="opts">
+              {goals.map((g) => <label class="opt"><input type="checkbox" name="goals" value={g} /> {g}</label>)}
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="f-budget">What is your estimated budget for this project?</label>
+            <select class="select input" id="f-budget" name="budget">
+              <option value="">What is your estimated budget for this project?</option>
+              {budgets.map((b) => <option>{b}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-notes">Anything else you’d like us to know about your project?</label>
+            <textarea class="textarea" id="f-notes" name="message" placeholder="Feel free to share details, ideas, goals, or inspiration links."></textarea>
+          </div>
+
+          <p class="form-msg err" id="form-error" hidden></p>
+          <button class="submit" type="submit" id="submit-btn">Get Started</button>
+        </form>
+
+        <div class="done" id="form-done" hidden>
+          <h2>Thank you!</h2>
+          <p>We've got your project details and will get back to you within a few hours. Want to talk sooner? Book a free consultation now.</p>
+          <a class="btn btn-orange solid" href={settings.calendlyUrl} target="_blank" rel="noopener">Book a Free Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script is:inline define:vars={{ fallbackEmail: settings.email }}>
+  (function () {
+    var form = document.getElementById('project-form');
+    var err = document.getElementById('form-error');
+    var btn = document.getElementById('submit-btn');
+    function showError(msg) { err.textContent = msg; err.hidden = false; err.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      var data = new FormData(form);
+      if (!(data.get('fullname') || '').trim()) return showError('Please enter your name.');
+      var em = document.getElementById('f-email');
+      if (!em.value.trim() || !em.checkValidity()) return showError('Please enter a valid email address.');
+      if (!document.getElementById('f-phone').value.trim()) return showError('Please enter your phone or WhatsApp number.');
+      if (!data.get('service')) return showError('Please choose the type of service you need.');
+      var site = document.getElementById('f-site');
+      if (site.value && !site.checkValidity()) return showError('Please enter the full website link, starting with https://');
+      if (!data.get('access_key')) return showError('Our form is being set up. Please email us at ' + fallbackEmail + ' instead.');
+
+      var payload = {
+        access_key: data.get('access_key'),
+        subject: 'New project enquiry from ' + data.get('fullname') + (data.get('business') ? ' (' + data.get('business') + ')' : ''),
+        from_name: data.get('from_name'),
+        replyto: data.get('email'),
+        botcheck: data.get('botcheck') ? true : '',
+        Name: data.get('fullname'),
+        'Business name': data.get('business') || '—',
+        Email: data.get('email'),
+        'Phone / WhatsApp': data.get('country_code') + ' ' + data.get('phone'),
+        Service: data.get('service'),
+        'Current website': data.get('current_website') || '—',
+        Goals: data.getAll('goals').join(', ') || '—',
+        Budget: data.get('budget') || '—',
+        Message: data.get('message') || '—'
+      };
+
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (!res.success) throw new Error(res.message || 'Failed');
+        form.hidden = true;
+        document.getElementById('form-done').hidden = false;
+        document.getElementById('form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }).catch(function () {
+        showError('Something went wrong sending your details. Please try again, or email us at ' + fallbackEmail + '.');
+      }).finally(function () { btn.disabled = false; btn.textContent = 'Get Started'; });
+    });
+  })();
+</script>

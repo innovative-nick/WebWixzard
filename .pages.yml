@@ -131,3 +131,4 @@ content:
       - { name: calendlyUrl, label: Booking link (Calendly), type: string }
       - { name: instagram, label: Instagram URL (leave empty to hide), type: string }
       - { name: linkedin, label: LinkedIn URL (leave empty to hide), type: string }
+      - { name: web3formsKey, label: Web3Forms access key (form notifications), type: string }
