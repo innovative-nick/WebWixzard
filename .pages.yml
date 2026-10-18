@@ -11,58 +11,44 @@ content:
     path: src/content/projects
     filename: "{primary}.md"
     view:
-      fields: [title, platform, published, featured]
+      fields: [title, published, order]
       primary: title
       sort: order
       order: asc
     fields:
       - name: title
-        label: Project title
+        label: Project name (not shown on the site, used for your reference and image alt text)
         type: string
         required: true
-      - name: client
-        label: Client name
-        type: string
-      - name: industry
-        label: Industry
-        type: string
-      - name: summary
-        label: One-line summary
-        type: text
-        description: Shown on project cards and at the top of the project page.
       - name: cover
-        label: Cover image (website screenshot, 16:10 works best)
+        label: Portfolio image (square, e.g. 1000×1000 laptop mockup)
         type: image
+        required: true
       - name: liveUrl
         label: Live website URL
         type: string
-      - name: platform
-        label: Platform
-        type: select
-        options:
-          values: [WordPress, Webflow, GoHighLevel, Wix Studio, Shopify, Framer, Custom code]
-      - name: services
-        label: Services provided
-        type: string
-        list: true
-      - name: year
-        label: Year
-        type: string
-      - name: featured
-        label: Show on homepage
-        type: boolean
-        default: true
       - name: published
-        label: Published (visible on the site)
+        label: Show on the website
         type: boolean
         default: true
       - name: order
         label: Display order (1 shows first)
         type: number
         default: 10
-      - name: body
-        label: Case study (optional)
-        type: rich-text
+
+  - name: logos
+    label: Client logos strip
+    type: file
+    path: src/data/logos.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Client name
+        type: string
+      - name: image
+        label: Logo
+        type: image
 
   - name: testimonials
     label: Testimonials
@@ -97,18 +83,18 @@ content:
         label: Package name
         type: string
         required: true
-      - name: price
-        label: Price (e.g. $1,200)
-        type: string
-        required: true
-      - name: note
-        label: Price note (e.g. One-time)
-        type: string
       - name: summary
         label: Short description
         type: text
+      - name: price
+        label: Price without the $ sign (e.g. 1,200)
+        type: string
+        required: true
+      - name: note
+        label: Price note
+        type: string
       - name: popular
-        label: Mark as most popular
+        label: Mark as Most Popular
         type: boolean
       - name: features
         label: What's included
@@ -143,10 +129,5 @@ content:
       - { name: email, label: Email, type: string }
       - { name: phone, label: Phone, type: string }
       - { name: calendlyUrl, label: Booking link (Calendly), type: string }
-      - { name: responseTime, label: Response time line, type: string }
-      - { name: facebook, label: Facebook URL, type: string }
-      - { name: instagram, label: Instagram URL, type: string }
-      - { name: linkedin, label: LinkedIn URL, type: string }
-      - { name: youtube, label: YouTube URL, type: string }
-      - { name: tiktok, label: TikTok URL, type: string }
-      - { name: whatsapp, label: WhatsApp link (https://wa.me/...), type: string }
+      - { name: instagram, label: Instagram URL (leave empty to hide), type: string }
+      - { name: linkedin, label: LinkedIn URL (leave empty to hide), type: string }

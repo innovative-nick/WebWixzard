@@ -5,7 +5,7 @@ Astro static site with a free, Git-based CMS (Pages CMS), hosted free on Cloudfl
 ## Go live (one-time, about 20 minutes)
 
 ### 1. Put the code on GitHub
-1. Create a new **empty** repository on GitHub, for example `webwixzard-site`.
+1. Create a new **empty** repository on GitHub, for example `WebWixzard`.
 2. Upload this folder to it (GitHub Desktop, or `git init && git add . && git commit -m "Initial site" && git push`).
 
 ### 2. Deploy on Cloudflare Pages
@@ -29,14 +29,19 @@ Astro static site with a free, Git-based CMS (Pages CMS), hosted free on Cloudfl
 
 ### 4. Turn on the CMS
 1. Go to https://app.pagescms.org and sign in with GitHub.
-2. Install the Pages CMS GitHub app on the `webwixzard-site` repository.
+2. Install the Pages CMS GitHub app on the `WebWixzard` repository.
 3. Open the repository. You'll see **Portfolio projects, Testimonials, Pricing packages, FAQs, Contact & social links**.
 
 ## Adding a portfolio project
 1. Pages CMS → **Portfolio projects → Add an entry**.
-2. Fill in the title, summary, live URL and platform, and upload a screenshot as the cover (16:10, around 1600×1000).
-3. Keep **Published** on (and **Show on homepage** if you want it there). Lower **Display order** numbers show first.
+2. Enter a project name, upload the square laptop-mockup image, and paste the live website URL.
+3. Keep **Show on the website** on. Lower **Display order** numbers show first.
 4. Save. Cloudflare rebuilds and the project is live in about a minute.
+
+## Images
+The original images were copied from the old GoHighLevel site into `public/images` and `public/media`
+by the **Copy images from old site** GitHub Action (`scripts/fetch-images.mjs`). Swap any of them by
+uploading a file with the same name.
 
 ## Run it on your computer (optional)
 ```
@@ -47,8 +52,8 @@ Open http://localhost:4321.
 
 ## Where things live
 - `src/content/projects/` portfolio projects (one Markdown file each)
-- `src/data/` testimonials, pricing, FAQs, contact details (JSON)
-- `src/pages/` homepage, work index, project pages, 404
+- `src/data/` client logos, testimonials, pricing, FAQs, contact and social links (JSON)
+- `src/pages/` homepage and 404
 - `src/styles/global.css` all styling and brand colours
 - `public/_redirects` sends old GoHighLevel URLs to the new pages
 - `.pages.yml` CMS configuration

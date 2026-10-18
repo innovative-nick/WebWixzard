@@ -1,47 +1,47 @@
 [
   {
     "name": "Business Essentials",
-    "price": "$500",
-    "note": "One-time",
-    "summary": "A clean, credible site for businesses that need to get online properly.",
+    "summary": "For businesses that need a clean, professional online presence.",
+    "price": "500",
+    "note": "one-time · no hidden fees",
     "popular": false,
     "features": [
       "Up to 3 pages",
       "Mobile responsive",
-      "Simple AI chatbot",
+      "Simple AI Chatbot",
       "Basic SEO setup",
-      "2 rounds of revisions",
-      "30 days of support"
+      "2 revision rounds",
+      "30-day support"
     ]
   },
   {
     "name": "Growth Catalyst",
-    "price": "$1,200",
-    "note": "One-time",
-    "summary": "Built to turn visitors into enquiries, with the SEO groundwork done right.",
+    "summary": "For businesses ready to attract more clients and compete seriously online.",
+    "price": "1,200",
+    "note": "one-time · no hidden fees",
     "popular": true,
     "features": [
       "Up to 5 pages",
-      "Conversion-focused layout",
-      "AI chatbot",
+      "Advanced conversion-focused layout",
+      "AI Chatbot",
       "Full SEO foundation",
-      "3 rounds of revisions",
-      "60 days of support"
+      "3 revision rounds",
+      "60-day support"
     ]
   },
   {
     "name": "Brand Authority",
-    "price": "$2,000",
-    "note": "One-time",
-    "summary": "A premium, custom site for businesses competing on reputation.",
+    "summary": "For businesses that want a complete digital presence built to scale.",
+    "price": "2,000",
+    "note": "one-time · no hidden fees",
     "popular": false,
     "features": [
       "Up to 7 pages",
       "Premium custom design",
-      "Advanced AI chatbot",
+      "Advanced AI Chatbot",
       "Advanced lead capture",
-      "5 rounds of revisions",
-      "90 days of support"
+      "5 revision rounds",
+      "90-day support"
     ]
   }
 ]
